@@ -1,0 +1,10 @@
+{
+  "nombre": "Arturo Pérez",
+  "apellidos": "Gómez",
+  "correo": "arturo.perez@example.com",
+  "noCuenta": "12345678",
+  "carrera": "Ingeniería en Sistemas",
+  "turno": "Matutino",
+  "genero": "Masculino",
+  "fotoPerfil": "/images/profile-sample.jpg"
+}
