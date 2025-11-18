@@ -1,9 +1,6 @@
-"use client";
-
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { useEffect, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import AuthGate from "./components/AuthGateWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,20 +12,19 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export default function RootLayout({ children }) {
-  const [authenticated, setAuthenticated] = useState(false);
-  const pathname = usePathname();
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const token = localStorage.getItem("token");
-      setAuthenticated(!!token);
-    }
-  }, []);
+export const metadata = {
+  title: "NousFit AdminBoard",
+  description: "Panel administrativo de NousFit",
+  viewport: "width=device-width, initial-scale=1.0",
+};
 
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {authenticated || pathname === "/login" ? <main className="flex-1">{children}</main> : null}
+        <AuthGate>
+          <main className="flex-1">{children}</main>
+        </AuthGate>
       </body>
     </html>
   );
