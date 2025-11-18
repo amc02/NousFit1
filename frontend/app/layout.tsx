@@ -18,8 +18,6 @@ const geistMono = Geist_Mono({
 export default function RootLayout({ children }) {
   const [authenticated, setAuthenticated] = useState(false);
   const pathname = usePathname();
-  const router = useRouter();
-
   useEffect(() => {
     if (typeof window !== "undefined") {
       const token = localStorage.getItem("token");
